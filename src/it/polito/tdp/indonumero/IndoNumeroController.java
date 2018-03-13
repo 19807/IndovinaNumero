@@ -70,7 +70,7 @@ public class IndoNumeroController {
 
 	@FXML
 	void handleProva(ActionEvent event) {
-		String numS = txtTentativo.getText();
+		String numS = txtTentativo.getText(); 
 
 		if(numS.length()==0) {
 			txtLog.appendText("Devi inserire un numero!\n");
@@ -80,6 +80,11 @@ public class IndoNumeroController {
 		try {
 			int num = Integer.parseInt(numS);
 			//numero intero
+			
+			if(num<1 || num>NMAX) {
+				txtLog.appendText("Valore fuori dall'intervallo consentito\n");
+				return; 
+			}
 			if(num==this.segreto) {
 				txtLog.appendText("Hai vinto!\n");
 				boxGioco.setDisable(true);
